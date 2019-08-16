@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<cadastro>
+  <pessoa>
+    <nome>Cristian</nome>
+    <telefone>(47)99954-4114</telefone>
+    <sexo>masculino</sexo>
+    <email>cristian@fodase.com</email>
+  </pessoa>
+</cadastro>
