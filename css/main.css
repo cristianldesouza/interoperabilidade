@@ -29,3 +29,25 @@ body {
 .botao {
     width: 130px;
 }
+
+.botaozao {
+    width: 150px;
+}
+
+
+.my-table {
+    overflow: auto;
+    height: 380px;
+}
+
+.display{
+    width: 100%;
+    height: 300px;
+}
+
+.littlebutton {
+    height: 30px;
+    width: 40px;
+    padding-left: 2px;
+    padding-left: 3px;
+}

@@ -8,14 +8,30 @@ function salvaPessoa($nome, $telefone, $sexo, $email) {
 
     $result = pg_query($conexao, "INSERT INTO pessoa (nome, telefone, sexo, email) VALUES ('".$nome."', '".$telefone."', '".$sexo."', '".$email."')");
 
+    pg_close($pg_close);
 }
 
-function formToXML() {
-    $nome = $_POST['nome'];
-    $telefone = $_POST['telefone'];
-    $sexo = $_POST['sexo'];
-    $email = $_POST['e-mail'];
+function listaPessoas() {
+    $conexao = pg_connect("host=localhost port=5432 dbname=interoperabilidade user=propesqweb password=propesqweb") or
+    die ("Não foi possível conectar ao servidor PostGreSQL");
 
+
+    $result = pg_query($conexao, "SELECT * FROM pessoa");
+    $pessoa = array();
+    while($linha = pg_fetch_array($result)){
+        $pessoa[$linha['id']]['id'] = $linha['id'];
+        $pessoa[$linha['id']]['nome'] = $linha['nome'];
+        $pessoa[$linha['id']]['telefone'] = $linha['telefone'];
+        $pessoa[$linha['id']]['sexo'] = $linha['sexo'];
+        $pessoa[$linha['id']]['email'] = $linha['email'];
+    }
+
+    pg_close($pg_close);
+
+    return $pessoa;
+}
+
+function formToXML($nome, $telefone, $sexo, $email) {
     //inicializar encoding do xml
     $dom = new DOMDocument("1.0", "ISO-8859-1");
 
@@ -52,8 +68,8 @@ function formToXML() {
     //$dom->save("contatos.xml");
     
     //cabeçalho
-    header("Content-Type: text/xml");
+    //header("Content-Type: text/xml");
 
     //imprime o xml na tela
-    print $dom->saveXML();
+    return $dom->saveXML();
 }
