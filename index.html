@@ -23,7 +23,7 @@
                   <h4>Formulário para tratamento de dados em XML</h4>
                 </div>
             </div>
-            <form role="form" id="myForm" name="myForm" action="php/controlador.php" method="POST">
+            <form role="form" id="myForm" name="myForm" action="php/salva.php" method="POST">
                 <div class="row form-container">
                     <div class="col-sm form-group">
                         <label for="nome">Nome</label>
@@ -52,10 +52,21 @@
                     </div>
                     <div class="botao-container">
                         <button type="submit" class="btn btn-primary botao">Enviar</button>
+                        <button type="button" id="troca-troca" class="btn btn-secondary botao">Listar</button>
                     </div>
                 </form>
                 
             </div>
         </div>
 </body>
+<script>
+    $(document).ready(() => {
+        $("#troca-troca").on('click', trocaPagina);
+        console.log('aqui ta vino');
+    });
+
+    function trocaPagina() {
+        window.location.replace("lista.html"); 
+    }
+</script>
 </html>

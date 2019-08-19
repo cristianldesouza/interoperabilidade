@@ -1,8 +1,13 @@
 <?php
 
-function conectaPostgres() {
-    $servidor = "localhost";
-    $usuario = "propesqweb";
+function salvaPessoa($nome, $telefone, $sexo, $email) {
+    $conexao = pg_connect("host=localhost port=5432 dbname=interoperabilidade user=propesqweb password=propesqweb") or
+    die ("Não foi possível conectar ao servidor PostGreSQL");
+
+    
+
+    $result = pg_query($conexao, "INSERT INTO pessoa (nome, telefone, sexo, email) VALUES ('".$nome."', '".$telefone."', '".$sexo."', '".$email."')");
+
 }
 
 function formToXML() {
@@ -44,8 +49,8 @@ function formToXML() {
     $dom->appendChild($root);
 
     //salva xml
-    $dom->save("contatos.xml");
-
+    //$dom->save("contatos.xml");
+    
     //cabeçalho
     header("Content-Type: text/xml");
 
