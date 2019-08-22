@@ -68,8 +68,11 @@ function formToXML($nome, $telefone, $sexo, $email) {
     //$dom->save("contatos.xml");
     
     //cabeçalho
-    //header("Content-Type: text/xml");
+    header("Content-Type: text/xml");
 
     //imprime o xml na tela
-    return $dom->saveXML();
+    print $dom->saveXML();
+
+    sleep(15);
+    header("Location: ../lista.php");
 }
