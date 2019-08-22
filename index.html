@@ -51,8 +51,8 @@
                         </div>
                     </div>
                     <div class="botao-container">
-                        <button type="submit" class="btn btn-primary botao">Enviar</button>
-                        <button type="button" id="troca-troca" class="btn btn-secondary botao">Listar</button>
+                        <button type="submit" id="submit" class="btn btn-primary botao">Enviar</button>
+                        <button type="button" id="troca-troca" class="btn btn-secondary botao troca-troca">Listar</button>
                     </div>
                 </form>
                 
@@ -62,7 +62,6 @@
 <script>
     $(document).ready(() => {
         $("#troca-troca").on('click', trocaPagina);
-        console.log('aqui ta vino');
     });
 
     function trocaPagina() {

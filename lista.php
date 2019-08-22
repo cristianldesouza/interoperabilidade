@@ -47,6 +47,7 @@
                                 <td>".$pessoa['email']."</td>
                                 <td>
                                     <button type='button' class='btn btn-outline-info' onclick='geraXML(event)' >XML</button>  
+                                    <button type='button' class='btn btn-outline-dark' onclick='gerarJSON(event)'>JSON</button>
                                     <button type='button' class='btn btn-outline-danger' onclick='deletarPessoa(event)'>X</button>
                                 </td>
 
@@ -86,6 +87,7 @@
 
         }).done(function(resposta) {
             window.location.reload();
+
         }).fail(function(jqXHR, textStatus ) {
             console.log("Request failed: " + textStatus);
 
@@ -104,6 +106,31 @@
         
         $.ajax({
             url: "php/geraxml.php",
+            type: "POST",
+            data: "nome="+nome+"&telefone="+telefone+"&sexo="+sexo+"&email="+email+"",
+            dataType: "html"
+
+        }).done(function(resposta) {
+            alert(resposta);
+
+        }).fail(function(jqXHR, textStatus ) {
+            console.log("Request failed: " + textStatus);
+
+        }).always(function() {
+            
+        });
+    }
+
+    function gerarJSON(e) {
+        let coluna = e.target.parentNode.parentNode; 
+        
+        let nome = coluna.children[1].innerText;
+        let telefone = coluna.children[2].innerText;
+        let sexo = coluna.children[3].innerText;
+        let email = coluna.children[4].innerText;
+        
+        $.ajax({
+            url: "php/gerajson.php",
             type: "POST",
             data: "nome="+nome+"&telefone="+telefone+"&sexo="+sexo+"&email="+email+"",
             dataType: "html"
