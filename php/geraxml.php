@@ -10,4 +10,6 @@ if (isset($_POST)){
     $email = $_POST['e-mail'];
 
     geraXML($nome, $telefone, $sexo, $email);
+} else {
+    echo "Não deu!";
 }
