@@ -11,6 +11,19 @@ function salvaPessoa($nome, $telefone, $sexo, $email) {
     pg_close($pg_close);
 }
 
+function deletaPessoa($pessoaID) {
+
+    $conexao = pg_connect("host=localhost port=5432 dbname=interoperabilidade user=propesqweb password=propesqweb") or
+    die ("Não foi possível conectar ao servidor PostGreSQL");
+    
+    $sql = "DELETE FROM pessoa WHERE id = ".$pessoaID."";
+
+    $result = pg_query($conexao, $sql);
+    
+    pg_close($pg_close);
+}
+
+
 function listaPessoas() {
     $conexao = pg_connect("host=localhost port=5432 dbname=interoperabilidade user=propesqweb password=propesqweb") or
     die ("Não foi possível conectar ao servidor PostGreSQL");
@@ -31,7 +44,7 @@ function listaPessoas() {
     return $pessoa;
 }
 
-function formToXML($nome, $telefone, $sexo, $email) {
+function geraXML($nome, $telefone, $sexo, $email) {
     //inicializar encoding do xml
     $dom = new DOMDocument("1.0", "ISO-8859-1");
 
@@ -66,13 +79,10 @@ function formToXML($nome, $telefone, $sexo, $email) {
 
     //salva xml
     //$dom->save("contatos.xml");
-    
+
     //cabeçalho
     header("Content-Type: text/xml");
 
     //imprime o xml na tela
     print $dom->saveXML();
-
-    sleep(15);
-    header("Location: ../lista.php");
 }
