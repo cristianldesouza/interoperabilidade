@@ -1,0 +1,31 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="clientes" type="clientesType"/>
+    <xs:complexType name="enderecoType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="rua"/>
+            <xs:element type="xs:string" name="numero"/>
+            <xs:element type="xs:string" name="complemento"/>
+            <xs:element type="xs:string" name="cidade"/>
+            <xs:element type="xs:string" name="estado"/>
+        </xs:sequence>
+        <xs:attribute type="xs:boolean" name="principal" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="enderecosType">
+        <xs:sequence>
+            <xs:element type="enderecoType" name="endereco" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="clienteType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="nome"/>
+            <xs:element type="enderecosType" name="enderecos"/>
+        </xs:sequence>
+        <xs:attribute type="xs:integer" name="id"/>
+    </xs:complexType>
+    <xs:complexType name="clientesType">
+        <xs:sequence>
+            <xs:element type="clienteType" name="cliente" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
